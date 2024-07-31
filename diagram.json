@@ -11,34 +11,34 @@
       "left": -433,
       "attrs": {}
     },
-    { "type": "wokwi-buzzer", "id": "wokwi-buzzer-0", "top": 434.4, "left": 1.8, "attrs": {} },
+    { "type": "wokwi-buzzer", "id": "wokwi-buzzer-0", "top": 511.2, "left": -699, "attrs": {} },
     {
       "type": "wokwi-relay-module",
       "id": "wokwi-relay-module-0",
-      "top": 430,
-      "left": 99,
+      "top": 902.6,
+      "left": -835.2,
       "attrs": {}
     },
     {
       "type": "wokwi-tm1637-7segment",
       "id": "wokwi-tm1637-7segment-0",
-      "top": 585.56,
-      "left": 45.43,
+      "top": 441.56,
+      "left": -885.77,
       "attrs": {}
     },
     {
       "type": "wokwi-lcd1602",
       "id": "wokwi-lcd1602-0",
-      "top": 205.03,
+      "top": 685.03,
       "left": -396.8,
       "attrs": {}
     },
     {
       "type": "wokwi-pushbutton",
       "id": "wokwi-pushbutton-0",
-      "top": 1075,
-      "left": 0,
-      "attrs": {}
+      "top": 707,
+      "left": -691.2,
+      "attrs": { "color": "red", "bounce": "1" }
     },
     {
       "type": "wokwi-pir-motion-sensor",
@@ -47,14 +47,20 @@
       "left": -640.98,
       "attrs": {}
     },
-    { "type": "wokwi-servo", "id": "wokwi-servo-0", "top": 1290, "left": 0, "attrs": {} }
+    { "type": "wokwi-servo", "id": "wokwi-servo-0", "top": 583.6, "left": -873.6, "attrs": {} }
   ],
   "connections": [
     [ "wokwi-slide-potentiometer-0:GND", "pico:GND.7", "black", [ "v0" ] ],
     [ "wokwi-slide-potentiometer-0:VCC", "pico:3V3_EN", "red", [ "h0" ] ],
     [ "pico:GP26", "wokwi-slide-potentiometer-0:SIG", "green", [ "h0" ] ],
     [ "wokwi-pir-motion-sensor-0:VCC", "pico:3V3_EN", "red", [ "v57.6", "h105.29" ] ],
-    [ "wokwi-pir-motion-sensor-0:GND", "pico:GND.1", "black", [ "v0" ] ]
+    [ "wokwi-pir-motion-sensor-0:GND", "pico:GND.1", "black", [ "v0" ] ],
+    [ "pico:GP0", "wokwi-pir-motion-sensor-0:OUT", "green", [ "h0" ] ],
+    [ "pico:GP8", "wokwi-buzzer-0:1", "green", [ "h0" ] ],
+    [ "pico:GP1", "wokwi-buzzer-0:2", "green", [ "h0" ] ],
+    [ "wokwi-pushbutton-0:1.l", "pico:GP11", "green", [ "h0" ] ],
+    [ "wokwi-pushbutton-0:2.r", "pico:GND.4", "green", [ "h0" ] ],
+    [ "wokwi-lcd1602-0:VSS", "pico:GND.8", "green", [ "v0" ] ]
   ],
   "dependencies": {}
 }
