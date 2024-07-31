@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "author": "The Bin - Hack Club",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-pi-pico-w", "id": "pico", "top": 572.75, "left": -572.45, "attrs": {} },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "wokwi-slide-potentiometer-0",
+      "top": 456.2,
+      "left": -433,
+      "attrs": {}
+    },
+    { "type": "wokwi-buzzer", "id": "wokwi-buzzer-0", "top": 434.4, "left": 1.8, "attrs": {} },
+    {
+      "type": "wokwi-relay-module",
+      "id": "wokwi-relay-module-0",
+      "top": 430,
+      "left": 99,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-tm1637-7segment",
+      "id": "wokwi-tm1637-7segment-0",
+      "top": 585.56,
+      "left": 45.43,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "wokwi-lcd1602-0",
+      "top": 205.03,
+      "left": -396.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "wokwi-pushbutton-0",
+      "top": 1075,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "wokwi-pir-motion-sensor-0",
+      "top": 388,
+      "left": -640.98,
+      "attrs": {}
+    },
+    { "type": "wokwi-servo", "id": "wokwi-servo-0", "top": 1290, "left": 0, "attrs": {} }
+  ],
+  "connections": [
+    [ "wokwi-slide-potentiometer-0:GND", "pico:GND.7", "black", [ "v0" ] ],
+    [ "wokwi-slide-potentiometer-0:VCC", "pico:3V3_EN", "red", [ "h0" ] ],
+    [ "pico:GP26", "wokwi-slide-potentiometer-0:SIG", "green", [ "h0" ] ],
+    [ "wokwi-pir-motion-sensor-0:VCC", "pico:3V3_EN", "red", [ "v57.6", "h105.29" ] ],
+    [ "wokwi-pir-motion-sensor-0:GND", "pico:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
