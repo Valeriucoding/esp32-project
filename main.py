@@ -2,7 +2,7 @@ from machine import ADC, Pin, PWM, I2C
 import time
 from pico_i2c_lcd import I2cLcd
 import tm1637
-from utils import run_buzzer_for_duration
+from utils import run_buzzer_for_duration, set_servo_angle
 
 # Initialize potentiometer pin
 pot = ADC(Pin(26))
@@ -23,20 +23,21 @@ tm = tm1637.TM1637(clk=Pin(5), dio=Pin(4))
 # Initialize servo
 pwm = PWM(Pin(15))
 pwm.freq(50)
+# Initialize relay
+relay = Pin(18, Pin.OUT)
 
 start_buzzer, update_buzzer = run_buzzer_for_duration(buzzer, 1)
 car_in_queue = False
 num_of_cars_approved = 0
 button_last_state = button.value()
+servo_position = 4750
 while True:
     motion_detected = pir_sensor.value()
     if motion_detected and not buzzer.duty_u16() and not car_in_queue:
         car_in_queue = True
-        print("Motion detected")
-        # buzzer.freq(100)
-        # buzzer.duty_u16(1)
         start_buzzer()
         lcd.clear()
+        relay.on()
         lcd.putstr("Car is at the barrier!")
     button_current_state = button.value()
     if button_current_state == 0 and button_last_state == 1 and car_in_queue:
@@ -45,71 +46,25 @@ while True:
         lcd.putstr("Approved!")
         num_of_cars_approved += 1
         tm.number(num_of_cars_approved)
-        # Raise the servo motor by 90 degrees
-        # pwm.duty_u16(9000)
 
+        for position in range(4750, 9000, 50):
+            pwm.duty_u16(position)
+            time.sleep(0.01)
+        time.sleep(5)
+        for position in range(9000, 4750, -50):
+            pwm.duty_u16(position)
+            time.sleep(0.01)
+        relay.off()
     update_buzzer()
-    for position in range(3000, 9000, 50):
-        pwm.duty_u16(position)
-        time.sleep(0.01)
-    time.sleep(5)
-    for position in range(9000, 3000, -50):
-        pwm.duty_u16(position)
-        time.sleep(0.01)
-    time.sleep(5)
-    # for position in range(1000,9000,50):
-    #     print(position)
-    #     pwm.duty_u16(position)
-    #     time.sleep(0.01)
-    # for position in range(9000,1000,-50):
-    #     pwm.duty_u16(position)
-    #     time.sleep(0.01)
+
+    pot_value = pot.read_u16()
+    new_servo_position = int(4750 + (pot_value / 65535) * (9000 - 4750))
+    if new_servo_position != servo_position:
+        servo_position = new_servo_position
+        set_servo_angle(pwm, servo_position)
 
     if motion_detected:
         print("Motion detected!")
     else:
         print("No motion")
     time.sleep(0.1)
-
-    # # Potentiometer
-    # pot_value = pot.read_u16()
-
-    # percentage = (pot_value / 65535) * 100
-
-    # print("Potentiometer Value:", pot_value, "Percentage:", percentage)
-
-    # # Motion Sensor
-    # motion_detected = pir_sensor.value()
-
-    # if motion_detected:
-    #     print("Motion detected!")
-    # else:
-    #     print("No motion")
-
-    # # Buzzer
-    # if motion_detected:
-    #     buzzer.freq(100)
-    #     buzzer.duty_u16(1)
-    # else:
-    #     buzzer.duty_u16(0)
-
-    # # Button
-    # if  button.value() == 0:
-    #     print("Button pressed!")
-    # else:
-    #     print("Button not pressed")
-
-    # # Lcd
-    # lcd.putstr("Hello world!")
-    #  # servo
-    # for position in range(1000,9000,50):
-    #     pwm.duty_u16(position)
-    #     time.sleep(0.01)
-    # for position in range(9000,1000,-50):
-    #     pwm.duty_u16(position)
-    #     # time.sleep(0.01)
-
-    # time.sleep(0.1)
-    # # 4 digit display
-    # tm.show('help')
-    # lcd.clear()

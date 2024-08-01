@@ -8,15 +8,15 @@
       "type": "wokwi-slide-potentiometer",
       "id": "wokwi-slide-potentiometer-0",
       "top": 456.2,
-      "left": -423.4,
+      "left": -413.8,
       "attrs": {}
     },
     { "type": "wokwi-buzzer", "id": "wokwi-buzzer-0", "top": 511.2, "left": -699, "attrs": {} },
     {
       "type": "wokwi-relay-module",
       "id": "wokwi-relay-module-0",
-      "top": 902.6,
-      "left": -633.6,
+      "top": 883.4,
+      "left": -432,
       "attrs": {}
     },
     {
@@ -24,13 +24,6 @@
       "id": "wokwi-tm1637-7segment-0",
       "top": 595.16,
       "left": -856.97,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-lcd1602",
-      "id": "wokwi-lcd1602-0",
-      "top": 137.83,
-      "left": -300.8,
       "attrs": {}
     },
     {
@@ -65,9 +58,9 @@
   ],
   "connections": [
     [ "wokwi-slide-potentiometer-0:GND", "pico:GND.7", "black", [ "v0" ] ],
-    [ "wokwi-slide-potentiometer-0:VCC", "pico:3V3_EN", "red", [ "h0" ] ],
+    [ "wokwi-slide-potentiometer-0:VCC", "pico:3V3_EN", "red", [ "h-96", "v115.2" ] ],
     [ "pico:GP26", "wokwi-slide-potentiometer-0:SIG", "green", [ "h0" ] ],
-    [ "wokwi-pir-motion-sensor-0:VCC", "pico:3V3_EN", "red", [ "v57.6", "h105.29" ] ],
+    [ "wokwi-pir-motion-sensor-0:VCC", "pico:3V3_EN", "red", [ "v57.6", "h115.2", "v76.8" ] ],
     [ "wokwi-pir-motion-sensor-0:GND", "pico:GND.1", "black", [ "v0" ] ],
     [ "pico:GP0", "wokwi-pir-motion-sensor-0:OUT", "green", [ "h0" ] ],
     [ "pico:GP8", "wokwi-buzzer-0:1", "green", [ "h0" ] ],
@@ -79,12 +72,15 @@
     [ "lcd1:SDA", "pico:GP16", "green", [ "h0" ] ],
     [ "lcd1:SCL", "pico:GP17", "green", [ "h0" ] ],
     [ "wokwi-tm1637-7segment-0:GND", "pico:GND.2", "black", [ "h0" ] ],
-    [ "wokwi-tm1637-7segment-0:VCC", "pico:3V3_EN", "red", [ "h163.2", "v-28.8" ] ],
+    [ "wokwi-tm1637-7segment-0:VCC", "pico:3V3_EN", "red", [ "h172.8", "v-19.2", "h9.29" ] ],
     [ "wokwi-tm1637-7segment-0:CLK", "pico:GP5", "green", [ "h86.4", "v0", "h28.8" ] ],
     [ "wokwi-tm1637-7segment-0:DIO", "pico:GP4", "green", [ "h0" ] ],
-    [ "wokwi-servo-0:V+", "pico:VBUS", "green", [ "h0" ] ],
+    [ "wokwi-servo-0:V+", "pico:VBUS", "green", [ "h163.2", "v-240.1" ] ],
     [ "wokwi-servo-0:GND", "pico:GND.4", "black", [ "h38.4", "v-86.44" ] ],
-    [ "wokwi-servo-0:PWM", "pico:GP15", "green", [ "h0" ] ]
+    [ "wokwi-servo-0:PWM", "pico:GP15", "green", [ "h0" ] ],
+    [ "wokwi-relay-module-0:VCC", "pico:VBUS", "red", [ "h-38.4", "v-316.8" ] ],
+    [ "wokwi-relay-module-0:GND", "pico:GND.5", "black", [ "h-57.6", "v-163.64" ] ],
+    [ "wokwi-relay-module-0:IN", "pico:GP18", "green", [ "h-76.8", "v-182.64" ] ]
   ],
   "dependencies": {}
 }

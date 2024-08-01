@@ -7,7 +7,7 @@ def run_buzzer_for_duration(buzzer, duration):
 
     def start_buzzer():
         nonlocal buzzer_running, buzzer_start_time
-        buzzer.freq(10)
+        buzzer.freq(100)
         buzzer.duty_u16(1)
         buzzer_running = True
         buzzer_start_time = time.time()
@@ -25,3 +25,8 @@ def run_buzzer_for_duration(buzzer, duration):
                 stop_buzzer()
 
     return start_buzzer, update_buzzer
+
+
+def set_servo_angle(pwm, duty):
+    """Sets the servo to the specified duty cycle."""
+    pwm.duty_u16(duty)
