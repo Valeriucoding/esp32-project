@@ -1,5 +1,7 @@
-from machine import ADC, Pin, PWM
+from machine import ADC, Pin, PWM, I2C
 import time
+from pico_i2c_lcd import I2cLcd
+import tm1637
 
 # Initialize potentiometer pin
 pot = ADC(Pin(26))
@@ -11,6 +13,15 @@ buzzer.freq(1047)
 buzzer.duty_u16(0)
 # Initialize pushbutton pin
 button = Pin(11, Pin.IN, Pin.PULL_UP)
+# Initialize i2c lcd
+i2c = I2C(0, sda=Pin(16), scl=Pin(17), freq=400000)
+I2C_ADDR = i2c.scan()[0]
+lcd = I2cLcd(i2c, I2C_ADDR, 2, 16)
+# Initialize 4 digit display
+tm = tm1637.TM1637(clk=Pin(5), dio=Pin(4))
+# Initialize servo
+pwm = PWM(Pin(15))
+pwm.freq(50)
 
 while True:
     # Potentiometer
@@ -41,4 +52,17 @@ while True:
     else:
         print("Button not pressed")
 
+    # Lcd
+    lcd.putstr("Hello world!")
+    # servo
+    for position in range(1000, 9000, 50):
+        pwm.duty_u16(position)
+        time.sleep(0.01)
+    for position in range(9000, 1000, -50):
+        pwm.duty_u16(position)
+        # time.sleep(0.01)
+
     time.sleep(0.1)
+    # 4 digit display
+    tm.show('help')
+    lcd.clear()

@@ -22,15 +22,15 @@
     {
       "type": "wokwi-tm1637-7segment",
       "id": "wokwi-tm1637-7segment-0",
-      "top": 441.56,
-      "left": -885.77,
+      "top": 595.16,
+      "left": -856.97,
       "attrs": {}
     },
     {
       "type": "wokwi-lcd1602",
       "id": "wokwi-lcd1602-0",
-      "top": 685.03,
-      "left": -396.8,
+      "top": 137.83,
+      "left": -300.8,
       "attrs": {}
     },
     {
@@ -47,7 +47,21 @@
       "left": -640.98,
       "attrs": {}
     },
-    { "type": "wokwi-servo", "id": "wokwi-servo-0", "top": 583.6, "left": -873.6, "attrs": {} }
+    {
+      "type": "wokwi-servo",
+      "id": "wokwi-servo-0",
+      "top": 765.2,
+      "left": -813.2,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 716.8,
+      "left": -426.4,
+      "attrs": { "pins": "i2c" }
+    }
   ],
   "connections": [
     [ "wokwi-slide-potentiometer-0:GND", "pico:GND.7", "black", [ "v0" ] ],
@@ -60,7 +74,17 @@
     [ "pico:GP1", "wokwi-buzzer-0:2", "green", [ "h0" ] ],
     [ "wokwi-pushbutton-0:1.l", "pico:GP11", "green", [ "h0" ] ],
     [ "wokwi-pushbutton-0:2.r", "pico:GND.4", "green", [ "h0" ] ],
-    [ "wokwi-lcd1602-0:VSS", "pico:GND.8", "green", [ "v0" ] ]
+    [ "lcd1:VCC", "pico:VBUS", "red", [ "h-38.4", "v-211.1" ] ],
+    [ "pico:GND.6", "lcd1:GND", "black", [ "h57.91", "v48" ] ],
+    [ "lcd1:SDA", "pico:GP16", "green", [ "h0" ] ],
+    [ "lcd1:SCL", "pico:GP17", "green", [ "h0" ] ],
+    [ "wokwi-tm1637-7segment-0:GND", "pico:GND.2", "black", [ "h0" ] ],
+    [ "wokwi-tm1637-7segment-0:VCC", "pico:3V3_EN", "red", [ "h163.2", "v-28.8" ] ],
+    [ "wokwi-tm1637-7segment-0:CLK", "pico:GP5", "green", [ "h86.4", "v0", "h28.8" ] ],
+    [ "wokwi-tm1637-7segment-0:DIO", "pico:GP4", "green", [ "h0" ] ],
+    [ "wokwi-servo-0:V+", "pico:VBUS", "green", [ "h0" ] ],
+    [ "wokwi-servo-0:GND", "pico:GND.4", "black", [ "h38.4", "v-86.44" ] ],
+    [ "wokwi-servo-0:PWM", "pico:GP15", "green", [ "h0" ] ]
   ],
   "dependencies": {}
 }
