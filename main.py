@@ -24,45 +24,50 @@ pwm = PWM(Pin(15))
 pwm.freq(50)
 
 while True:
-    # Potentiometer
-    pot_value = pot.read_u16()
-
-    percentage = (pot_value / 65535) * 100
-
-    print("Potentiometer Value:", pot_value, "Percentage:", percentage)
-
-    # Motion Sensor
     motion_detected = pir_sensor.value()
-
     if motion_detected:
-        print("Motion detected!")
-    else:
-        print("No motion")
-
-    # Buzzer
-    if motion_detected:
-        buzzer.freq(100)
+        buzzer.freq(10)
         buzzer.duty_u16(1)
-    else:
-        buzzer.duty_u16(0)
 
-    # Button
-    if button.value() == 0:
-        print("Button pressed!")
-    else:
-        print("Button not pressed")
+    # # Potentiometer
+    # pot_value = pot.read_u16()
 
-    # Lcd
-    lcd.putstr("Hello world!")
-    # servo
-    for position in range(1000, 9000, 50):
-        pwm.duty_u16(position)
-        time.sleep(0.01)
-    for position in range(9000, 1000, -50):
-        pwm.duty_u16(position)
-        # time.sleep(0.01)
+    # percentage = (pot_value / 65535) * 100
 
-    time.sleep(0.1)
-    # 4 digit display
-    tm.show('help')
-    lcd.clear()
+    # print("Potentiometer Value:", pot_value, "Percentage:", percentage)
+
+    # # Motion Sensor
+    # motion_detected = pir_sensor.value()
+
+    # if motion_detected:
+    #     print("Motion detected!")
+    # else:
+    #     print("No motion")
+
+    # # Buzzer
+    # if motion_detected:
+    #     buzzer.freq(100)
+    #     buzzer.duty_u16(1)
+    # else:
+    #     buzzer.duty_u16(0)
+
+    # # Button
+    # if  button.value() == 0:
+    #     print("Button pressed!")
+    # else:
+    #     print("Button not pressed")
+
+    # # Lcd
+    # lcd.putstr("Hello world!")
+    #  # servo
+    # for position in range(1000,9000,50):
+    #     pwm.duty_u16(position)
+    #     time.sleep(0.01)
+    # for position in range(9000,1000,-50):
+    #     pwm.duty_u16(position)
+    #     # time.sleep(0.01)
+
+    # time.sleep(0.1)
+    # # 4 digit display
+    # tm.show('help')
+    # lcd.clear()
