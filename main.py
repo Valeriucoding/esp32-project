@@ -2,6 +2,7 @@ from machine import ADC, Pin, PWM, I2C
 import time
 from pico_i2c_lcd import I2cLcd
 import tm1637
+from utils import run_buzzer_for_duration
 
 # Initialize potentiometer pin
 pot = ADC(Pin(26))
@@ -23,11 +24,52 @@ tm = tm1637.TM1637(clk=Pin(5), dio=Pin(4))
 pwm = PWM(Pin(15))
 pwm.freq(50)
 
+start_buzzer, update_buzzer = run_buzzer_for_duration(buzzer, 1)
+car_in_queue = False
+num_of_cars_approved = 0
+button_last_state = button.value()
 while True:
     motion_detected = pir_sensor.value()
+    if motion_detected and not buzzer.duty_u16() and not car_in_queue:
+        car_in_queue = True
+        print("Motion detected")
+        # buzzer.freq(100)
+        # buzzer.duty_u16(1)
+        start_buzzer()
+        lcd.clear()
+        lcd.putstr("Car is at the barrier!")
+    button_current_state = button.value()
+    if button_current_state == 0 and button_last_state == 1 and car_in_queue:
+        car_in_queue = False
+        lcd.clear()
+        lcd.putstr("Approved!")
+        num_of_cars_approved += 1
+        tm.number(num_of_cars_approved)
+        # Raise the servo motor by 90 degrees
+        # pwm.duty_u16(9000)
+
+    update_buzzer()
+    for position in range(3000, 9000, 50):
+        pwm.duty_u16(position)
+        time.sleep(0.01)
+    time.sleep(5)
+    for position in range(9000, 3000, -50):
+        pwm.duty_u16(position)
+        time.sleep(0.01)
+    time.sleep(5)
+    # for position in range(1000,9000,50):
+    #     print(position)
+    #     pwm.duty_u16(position)
+    #     time.sleep(0.01)
+    # for position in range(9000,1000,-50):
+    #     pwm.duty_u16(position)
+    #     time.sleep(0.01)
+
     if motion_detected:
-        buzzer.freq(10)
-        buzzer.duty_u16(1)
+        print("Motion detected!")
+    else:
+        print("No motion")
+    time.sleep(0.1)
 
     # # Potentiometer
     # pot_value = pot.read_u16()

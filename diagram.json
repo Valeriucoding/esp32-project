@@ -8,7 +8,7 @@
       "type": "wokwi-slide-potentiometer",
       "id": "wokwi-slide-potentiometer-0",
       "top": 456.2,
-      "left": -433,
+      "left": -423.4,
       "attrs": {}
     },
     { "type": "wokwi-buzzer", "id": "wokwi-buzzer-0", "top": 511.2, "left": -699, "attrs": {} },
@@ -16,7 +16,7 @@
       "type": "wokwi-relay-module",
       "id": "wokwi-relay-module-0",
       "top": 902.6,
-      "left": -835.2,
+      "left": -633.6,
       "attrs": {}
     },
     {
@@ -38,7 +38,7 @@
       "id": "wokwi-pushbutton-0",
       "top": 707,
       "left": -691.2,
-      "attrs": { "color": "red", "bounce": "1" }
+      "attrs": { "color": "red", "bounce": "0" }
     },
     {
       "type": "wokwi-pir-motion-sensor",
