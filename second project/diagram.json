@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "author": "The Bin - Hack Club",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-pi-pico-w", "id": "pico", "top": 495.95, "left": -265.25, "attrs": {} },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "wokwi-mpu6050-0",
+      "top": 80.62,
+      "left": 136.72,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-analog-joystick",
+      "id": "wokwi-analog-joystick-0",
+      "top": 364.2,
+      "left": -100.2,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led-bar-graph",
+      "id": "wokwi-led-bar-graph-0",
+      "top": 292.8,
+      "left": 216,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-max7219-matrix",
+      "id": "wokwi-max7219-matrix-0",
+      "top": 202.2,
+      "left": 3.81,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-membrane-keypad",
+      "id": "wokwi-membrane-keypad-0",
+      "top": 766,
+      "left": 15.2,
+      "attrs": {}
+    },
+    { "type": "wokwi-neopixel", "id": "wokwi-neopixel-0", "top": 860, "left": 0, "attrs": {} },
+    { "type": "wokwi-ky-040", "id": "wokwi-ky-040-0", "top": 596.9, "left": 344.8, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "wokwi-hc-sr04-0",
+      "top": 590.7,
+      "left": -18.3,
+      "rotate": 90,
+      "attrs": { "distance": "178" }
+    }
+  ],
+  "connections": [
+    [ "wokwi-hc-sr04-0:GND", "pico:GND.8", "black", [ "h-96", "v-10.8" ] ],
+    [ "wokwi-hc-sr04-0:VCC", "pico:3V3", "red", [ "h-86.4", "v-76.8", "h-125.11" ] ],
+    [ "wokwi-analog-joystick-0:VCC", "pico:3V3", "red", [ "h0" ] ],
+    [ "wokwi-analog-joystick-0:GND", "pico:GND.1", "black", [ "v38.4", "h-48" ] ],
+    [ "wokwi-hc-sr04-0:ECHO", "pico:GP20", "green", [ "h0" ] ],
+    [ "wokwi-hc-sr04-0:TRIG", "pico:GP21", "green", [ "h0" ] ],
+    [ "wokwi-analog-joystick-0:SEL", "pico:GP16", "green", [ "v211.2", "h-153.6" ] ],
+    [ "wokwi-analog-joystick-0:HORZ", "pico:GP27", "green", [ "v0" ] ],
+    [ "wokwi-analog-joystick-0:VERT", "pico:GP26", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
