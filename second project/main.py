@@ -1,6 +1,8 @@
-from machine import Pin, time_pulse_us, ADC, I2C
+from machine import Pin, time_pulse_us, ADC, I2C, SPI
 import time
 from imu import MPU6050
+from rotary_irq_rp2 import RotaryIRQ
+import max7219
 
 # Initialize ultrasonic sensor
 SOUND_SPEED = 340
@@ -51,6 +53,33 @@ def scankeys():
         row_pins[row].low()
 
 
+# Initialize rotary encoder
+r = RotaryIRQ(
+    pin_num_clk=17,
+    pin_num_dt=18,
+    reverse=False,
+    incr=1,
+    min_val=0,
+    max_val=20,
+    range_mode=RotaryIRQ.RANGE_BOUNDED,
+    pull_up=True,
+    half_step=False,
+)
+
+val_old = r.value()
+print(val_old)
+
+# Initialize max7219
+spi = SPI(0, baudrate=10000000, polarity=1, phase=0, sck=Pin(2), mosi=Pin(3))
+ss = Pin(5, Pin.OUT)
+display = max7219.Matrix8x8(spi, ss, 1)
+display.brightness(10)
+scrolling_message = "RASPBERRY PI"
+length = len(scrolling_message)
+column = (length * 4)
+display.fill(0)
+display.show()
+
 while True:
     # ultrasonic sensor
     trig_pin.value(0)
@@ -78,5 +107,25 @@ while True:
     gz = round(imu.gyro.z)
     tem = round(imu.temperature, 2)
     # print("ax",ax,"\t","ay",ay,"\t","az",az,"\t","gx",gx,"\t","gy",gy,"\t","gz",gz,"\t","Temperature",tem,"        ",end="\r")
-    #
+    # keypad
     scankeys()
+
+    # rotary encoder
+    val_new = r.value()
+
+    if val_old != val_new:
+        val_old = val_new
+        print("step =", val_new)
+
+        # led matrix
+    for x in range(8, -column, -1):
+        # Clear the display
+        display.fill(0)
+        # Write the scrolling text in to frame buffer
+        display.text(scrolling_message, x, 0, 1)
+
+        # Show the display
+        display.show()
+
+        # Set the Scrolling speed. Here it is 50mS.
+        time.sleep(0.05)

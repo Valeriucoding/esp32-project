@@ -29,15 +29,16 @@
     {
       "type": "wokwi-max7219-matrix",
       "id": "wokwi-max7219-matrix-0",
-      "top": 202.2,
-      "left": 3.81,
+      "top": 243.11,
+      "left": -248.7,
+      "rotate": 90,
       "attrs": {}
     },
     {
       "type": "wokwi-membrane-keypad",
       "id": "wokwi-membrane-keypad-0",
       "top": 257.2,
-      "left": -608.8,
+      "left": -772,
       "attrs": {}
     },
     {
@@ -47,7 +48,14 @@
       "left": -77.8,
       "attrs": {}
     },
-    { "type": "wokwi-ky-040", "id": "wokwi-ky-040-0", "top": 539.3, "left": 200.8, "attrs": {} },
+    {
+      "type": "wokwi-ky-040",
+      "id": "wokwi-ky-040-0",
+      "top": 762.2,
+      "left": -203.7,
+      "rotate": 270,
+      "attrs": {}
+    },
     {
       "type": "wokwi-hc-sr04",
       "id": "wokwi-hc-sr04-0",
@@ -78,7 +86,16 @@
     [ "wokwi-membrane-keypad-0:C1", "pico:GP11", "green", [ "v0" ] ],
     [ "wokwi-membrane-keypad-0:C2", "pico:GP10", "green", [ "v0" ] ],
     [ "wokwi-membrane-keypad-0:C3", "pico:GP9", "green", [ "v0" ] ],
-    [ "wokwi-membrane-keypad-0:C4", "pico:GP8", "green", [ "v0" ] ]
+    [ "wokwi-membrane-keypad-0:C4", "pico:GP8", "green", [ "v0" ] ],
+    [ "wokwi-ky-040-0:GND", "pico:GND.5", "black", [ "v0" ] ],
+    [ "wokwi-ky-040-0:CLK", "pico:GP17", "green", [ "v0" ] ],
+    [ "wokwi-ky-040-0:DT", "pico:GP18", "green", [ "v0" ] ],
+    [ "wokwi-ky-040-0:VCC", "pico:3V3", "red", [ "v-192", "h-47.6" ] ],
+    [ "wokwi-max7219-matrix-0:V+", "pico:VBUS", "green", [ "v0" ] ],
+    [ "wokwi-max7219-matrix-0:GND", "pico:GND.7", "black", [ "v0" ] ],
+    [ "wokwi-max7219-matrix-0:CLK", "pico:GP2", "green", [ "v9.6", "h-134.4", "v172.8" ] ],
+    [ "wokwi-max7219-matrix-0:CS", "pico:GP5", "green", [ "v0", "h-153.6", "v220.8" ] ],
+    [ "wokwi-max7219-matrix-0:DIN", "pico:GP3", "green", [ "v-9.6", "h-172.8", "v230.4" ] ]
   ],
   "dependencies": {}
 }
