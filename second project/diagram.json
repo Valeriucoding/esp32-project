@@ -7,8 +7,9 @@
     {
       "type": "wokwi-mpu6050",
       "id": "wokwi-mpu6050-0",
-      "top": 80.62,
-      "left": 136.72,
+      "top": 425.38,
+      "left": -333.08,
+      "rotate": 270,
       "attrs": {}
     },
     {
@@ -35,12 +36,18 @@
     {
       "type": "wokwi-membrane-keypad",
       "id": "wokwi-membrane-keypad-0",
-      "top": 766,
-      "left": 15.2,
+      "top": 257.2,
+      "left": -608.8,
       "attrs": {}
     },
-    { "type": "wokwi-neopixel", "id": "wokwi-neopixel-0", "top": 860, "left": 0, "attrs": {} },
-    { "type": "wokwi-ky-040", "id": "wokwi-ky-040-0", "top": 596.9, "left": 344.8, "attrs": {} },
+    {
+      "type": "wokwi-neopixel",
+      "id": "wokwi-neopixel-0",
+      "top": 822.1,
+      "left": -77.8,
+      "attrs": {}
+    },
+    { "type": "wokwi-ky-040", "id": "wokwi-ky-040-0", "top": 539.3, "left": 200.8, "attrs": {} },
     {
       "type": "wokwi-hc-sr04",
       "id": "wokwi-hc-sr04-0",
@@ -59,7 +66,19 @@
     [ "wokwi-hc-sr04-0:TRIG", "pico:GP21", "green", [ "h0" ] ],
     [ "wokwi-analog-joystick-0:SEL", "pico:GP16", "green", [ "v211.2", "h-153.6" ] ],
     [ "wokwi-analog-joystick-0:HORZ", "pico:GP27", "green", [ "v0" ] ],
-    [ "wokwi-analog-joystick-0:VERT", "pico:GP26", "green", [ "v0" ] ]
+    [ "wokwi-analog-joystick-0:VERT", "pico:GP26", "green", [ "v0" ] ],
+    [ "wokwi-mpu6050-0:VCC", "pico:3V3", "red", [ "h134.4", "v-57.52" ] ],
+    [ "wokwi-mpu6050-0:GND", "pico:GND.2", "black", [ "h-19.2", "v-0.08" ] ],
+    [ "wokwi-mpu6050-0:SDA", "pico:GP0", "green", [ "h-9.6", "v-0.08" ] ],
+    [ "wokwi-mpu6050-0:SCL", "pico:GP1", "green", [ "h-19.2", "v-0.08" ] ],
+    [ "wokwi-membrane-keypad-0:R1", "pico:GP15", "green", [ "v0" ] ],
+    [ "wokwi-membrane-keypad-0:R2", "pico:GP14", "green", [ "v0" ] ],
+    [ "wokwi-membrane-keypad-0:R3", "pico:GP13", "green", [ "v0" ] ],
+    [ "wokwi-membrane-keypad-0:R4", "pico:GP12", "green", [ "v0" ] ],
+    [ "wokwi-membrane-keypad-0:C1", "pico:GP11", "green", [ "v0" ] ],
+    [ "wokwi-membrane-keypad-0:C2", "pico:GP10", "green", [ "v0" ] ],
+    [ "wokwi-membrane-keypad-0:C3", "pico:GP9", "green", [ "v0" ] ],
+    [ "wokwi-membrane-keypad-0:C4", "pico:GP8", "green", [ "v0" ] ]
   ],
   "dependencies": {}
 }
