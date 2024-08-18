@@ -70,15 +70,38 @@ val_old = r.value()
 print(val_old)
 
 # Initialize max7219
-spi = SPI(0, baudrate=10000000, polarity=1, phase=0, sck=Pin(2), mosi=Pin(3))
-ss = Pin(5, Pin.OUT)
-display = max7219.Matrix8x8(spi, ss, 1)
-display.brightness(10)
-scrolling_message = "RASPBERRY PI"
+# spi = SPI(0, baudrate=10000000, polarity=1, phase=0, sck=Pin(2), mosi=Pin(3))
+# ss = Pin(5, Pin.OUT)
+# display = max7219.Matrix8x8(spi, ss, 1)
+# display.brightness(10)
+# scrolling_message = "RASPBERRY PI"
+# length = len(scrolling_message)
+# column = (length * 4)
+# display.fill(0)
+# display.show()
+
+spi = SPI(0, baudrate=10000000, polarity=0, phase=0, sck=Pin(2), mosi=Pin(3))
+
+cs = Pin(5, Pin.OUT)  # CS pin on GPIO 3
+display = max7219.Matrix8x8(spi, cs, 1)
+
+display.brightness(1)
+
+# Define the scrolling message
+scrolling_message = "RASPBERRY PI PICO AND MAX7219 -- 8x8 DOT MATRIX SCROLLING DISPLAY"
+
+# Get the message length
 length = len(scrolling_message)
-column = (length * 4)
+
+# Calculate number of columns of the message
+column = (length * 8)
+
+# Clear the display.
 display.fill(0)
 display.show()
+
+# sleep for one one seconds
+time.sleep(1)
 
 while True:
     # ultrasonic sensor
@@ -118,9 +141,21 @@ while True:
         print("step =", val_new)
 
         # led matrix
+    # for x in range(8, -column, -1):
+    #     #Clear the display
+    #     display.fill(0)
+    #     # Write the scrolling text in to frame buffer
+    #     display.text(scrolling_message ,x,0,1)
+
+    #     #Show the display
+    #     display.show()
+
+    #     #Set the Scrolling speed. Here it is 50mS.
+    #     time.sleep(0.05)
     for x in range(8, -column, -1):
         # Clear the display
         display.fill(0)
+
         # Write the scrolling text in to frame buffer
         display.text(scrolling_message, x, 0, 1)
 

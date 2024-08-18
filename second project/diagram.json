@@ -91,11 +91,11 @@
     [ "wokwi-ky-040-0:CLK", "pico:GP17", "green", [ "v0" ] ],
     [ "wokwi-ky-040-0:DT", "pico:GP18", "green", [ "v0" ] ],
     [ "wokwi-ky-040-0:VCC", "pico:3V3", "red", [ "v-192", "h-47.6" ] ],
-    [ "wokwi-max7219-matrix-0:V+", "pico:VBUS", "green", [ "v0" ] ],
     [ "wokwi-max7219-matrix-0:GND", "pico:GND.7", "black", [ "v0" ] ],
-    [ "wokwi-max7219-matrix-0:CLK", "pico:GP2", "green", [ "v9.6", "h-134.4", "v172.8" ] ],
-    [ "wokwi-max7219-matrix-0:CS", "pico:GP5", "green", [ "v0", "h-153.6", "v220.8" ] ],
-    [ "wokwi-max7219-matrix-0:DIN", "pico:GP3", "green", [ "v-9.6", "h-172.8", "v230.4" ] ]
+    [ "wokwi-max7219-matrix-0:V+", "pico:VBUS", "green", [ "v172.8" ] ],
+    [ "wokwi-max7219-matrix-0:CLK", "pico:GP2", "green", [ "v0" ] ],
+    [ "wokwi-max7219-matrix-0:CS", "pico:GP3", "green", [ "v0" ] ],
+    [ "wokwi-max7219-matrix-0:DIN", "pico:GP5", "green", [ "v0" ] ]
   ],
   "dependencies": {}
 }
